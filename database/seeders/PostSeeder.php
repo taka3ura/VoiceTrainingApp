@@ -14,7 +14,7 @@ class PostSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('posts')->insert(
+        DB::table('posts')->insert([
             [
                 'body' => 'これは最初の投稿です。',
                 'user_id' => 1, // ユーザーIDを適切に設定
@@ -22,6 +22,69 @@ class PostSeeder extends Seeder
                 'updated_at' => new DateTime(),
                 'deleted_at' => null, // ソフトデリートを使用する場合
             ],
-        );
+            [
+                'body' => 'これは二番目の投稿です。',
+                'user_id' => 1,
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(),
+                'deleted_at' => null,
+            ],
+            [
+                'body' => 'これは三番目の投稿です。',
+                'user_id' => 1,
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(),
+                'deleted_at' => null,
+            ],
+            [
+                'body' => 'これは四番目の投稿です。',
+                'user_id' => 1,
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(),
+                'deleted_at' => null,
+            ],
+            [
+                'body' => 'これは五番目の投稿です。',
+                'user_id' => 1,
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(),
+                'deleted_at' => null,
+            ],
+            [
+                'body' => 'これは六番目の投稿です。',
+                'user_id' => 1,
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(),
+                'deleted_at' => null,
+            ],
+            [
+                'body' => 'これは七番目の投稿です。',
+                'user_id' => 1,
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(),
+                'deleted_at' => null,
+            ],
+            [
+                'body' => 'これは八番目の投稿です。',
+                'user_id' => 1,
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(),
+                'deleted_at' => null,
+            ],
+            [
+                'body' => 'これは九番目の投稿です。',
+                'user_id' => 1,
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(),
+                'deleted_at' => null,
+            ],
+            [
+                'body' => 'これは十番目の投稿です。',
+                'user_id' => 1,
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(),
+                'deleted_at' => null,
+            ],
+        ]);
     }
 }
