@@ -3,7 +3,7 @@
     <div class='posts'>
         @foreach ($posts as $post)
         <div class='post'>
-            {{-- <h2 class='user_name'>{{ $post->title }}</h2> --}}
+            <h2 class='user_name'>{{ $post->user->name }}</h2>
             <p class='body'>{{ $post->body }}</p>
         </div>
         @endforeach
