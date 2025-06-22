@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function () {
 
 Route::controller(PostController::class)->middleware(['auth'])->group(function () {
     Route::get('/posts', 'index')->name('index');
+    Route::get('/posts/{post}', 'show')->name('show');
 });
 
 require __DIR__ . '/auth.php';

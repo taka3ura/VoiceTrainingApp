@@ -4,7 +4,9 @@
         @foreach ($posts as $post)
         <div class='post'>
             <h2 class='user_name'>{{ $post->user->name }}</h2>
-            <p class='body'>{{ $post->body }}</p>
+            <p class='body'>
+                <a href="/posts/{{ $post->id }}">{{ $post->body }}</a>
+            </p>
         </div>
         @endforeach
     </div>
