@@ -16,7 +16,8 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
-                <a href='/posts/create'>create</a>
+                <a href='/posts'>投稿一覧</a>
+                <a href='/posts/create'>新規投稿</a>
             </div>
 
             <!-- Settings Dropdown -->
