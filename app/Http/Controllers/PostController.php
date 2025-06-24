@@ -45,4 +45,10 @@ class PostController extends Controller
         $post->fill($input)->save();
         return redirect('/posts');
     }
+
+    public function delete(Post $post)
+    {
+        $post->delete();
+        return redirect('/posts');
+    }
 }
