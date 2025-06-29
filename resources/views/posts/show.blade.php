@@ -4,6 +4,12 @@
         <p class='body'>
             <a href="/posts/{{ $post->id }}">{{ $post->body }}</a>
         </p>
+        @if ($post->audio_url)
+        <audio controls>
+            <source src="{{ $post->audio_url }}">
+            あなたのブラウザはaudioタグをサポートしていません。
+        </audio>
+        @endif
         @if ($post->user_id === Auth::id())
         <a href="/posts/{{ $post->id }}/edit">編集</a>
         @endif
