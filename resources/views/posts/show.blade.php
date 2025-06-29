@@ -9,6 +9,6 @@
         @endif
     </div>
     <div class="footer">
-        <a href="/posts">戻る</a>
+        <a href="/">戻る</a>
     </div>
 </x-app-layout>

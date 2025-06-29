@@ -1,3 +1,48 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.post {
+    border-bottom: 1px solid #e4e3e3; /* ボーダーの設定 */
+    padding: 10px; /* 内側のスペース */
+    transition: background-color 0.3s; /* ホバー時のトランジション */
+}
+
+.post:hover {
+    background-color: rgba(0, 0, 0, 0.05); /* ホバー時に薄いグレー */
+}
+
+.user_name {
+    font-weight: bold; /* 文字を太くする */
+}
+
+.user_information {
+    display: flex;
+    align-items: center;
+}
+
+.user_information img {
+    width: 40px;
+    height: 40px;
+    margin-right: 5px;
+}
+
+.post_edit {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.paginate {
+    display: flex; /* Flexboxを使用して横並びにする */
+    justify-content: center; /* 中央寄せ */
+    gap: 10px; /* リンク間の隙間を設定 */
+}
+
+.paginate a {
+    color: #333; /* テキストの色 */
+}
+
+.paginate a:hover {
+    color: #016bdc;
+}

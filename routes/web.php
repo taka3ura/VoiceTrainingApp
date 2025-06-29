@@ -15,10 +15,6 @@ use App\Http\Controllers\PostController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -30,7 +26,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::controller(PostController::class)->middleware(['auth'])->group(function () {
-    Route::get('/posts', 'index')->name('index');
+    Route::get('/', 'index')->name('index');
     Route::get('/posts/create', 'create')->name('create');
     Route::get('/posts/{post}', 'show')->name('show');
     Route::post('/posts', 'store')->name('store');
