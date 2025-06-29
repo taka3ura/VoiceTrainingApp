@@ -1,19 +1,24 @@
 <x-app-layout>
-    <h1>投稿一覧</h1>
     <div class='posts'>
         @foreach ($posts as $post)
         <div class='post'>
-            <h2 class='user_name'>{{ $post->user->name }}</h2>
+            <div class="user_information">
+                <img id="preview" src="{{ $post->user->image ?? asset('default-image.jpg') }}" alt="User Image">
+
+                <h2 class='user_name'>{{ $post->user->name }}</h2>
+            </div>
             <p class='body'>
                 <a href="/posts/{{ $post->id }}">{{ $post->body }}</a>
             </p>
             @if ($post->user_id === Auth::id())
-            <a href="/posts/{{ $post->id }}/edit">編集</a>
-            <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
-                @csrf
-                @method('DELETE')
-                <button type="button" onclick="deletePost({{ $post->id }})">削除</button>
-            </form>
+            <div class="post_edit">
+                <a href="/posts/{{ $post->id }}/edit">編集</a>
+                <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <button type="button" onclick="deletePost({{ $post->id }})">削除</button>
+                </form>
+            </div>
             @endif
         </div>
         @endforeach

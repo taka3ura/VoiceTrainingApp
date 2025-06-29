@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class RegisteredUserController extends Controller
 {
@@ -30,16 +31,23 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        $image = null;
+        if ($request->hasFile('image')) {
+            $image = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
+        }
+
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'image' => ['file', 'mimes:gif,png,jpg,webp', 'max:5120'],
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'image' => $image,
         ]);
 
         event(new Registered($user));

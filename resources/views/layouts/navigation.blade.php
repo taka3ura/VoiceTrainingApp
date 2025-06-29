@@ -15,11 +15,15 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link href="/posts" :active="request()->is('posts')">
+                        投稿一覧
+                    </x-nav-link>
+                    <x-nav-link href="/posts/create" :active="request()->is('posts/create')">
+                        新規投稿
+                    </x-nav-link>
                 </div>
-                <a href='/posts'>投稿一覧</a>
-                <a href='/posts/create'>新規投稿</a>
             </div>
-
+            <img src="{{ Auth::user()->image ?? asset('default-image.jpg') }}" alt="User Image" class="w-16 h-16 shadow-lg">
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">
@@ -71,6 +75,12 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="/posts" :active="request()->is('posts')">
+                投稿一覧
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="/posts/create" :active="request()->is('posts/create')">
+                新規投稿
             </x-responsive-nav-link>
         </div>
 
