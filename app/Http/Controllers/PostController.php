@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PostRequest;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class PostController extends Controller
 {
@@ -28,9 +29,15 @@ class PostController extends Controller
     public function store(PostRequest $request, Post $post)
     {
         $input = $request['post'];
+        if ($request->file("audio")) {
+            //cloudinaryへ音声を送信し、画像のURLを$audio_urlに代入している
+            $audio_url = Cloudinary::upload($request->file('audio')->getRealPath(), ['resource_type' => 'video'])->getSecurePath();
+            //dd($audio_url);  //音声のURLを画面に表示
+            $input += ['audio_url' => $audio_url];
+        }
         $input['user_id'] = Auth::id();
         $post->fill($input)->save();
-        return redirect('/posts');
+        return redirect('/');
     }
 
     public function edit(Post $post)
@@ -43,12 +50,12 @@ class PostController extends Controller
         $input = $request['post'];
         $input['user_id'] = Auth::id();
         $post->fill($input)->save();
-        return redirect('/posts');
+        return redirect('/');
     }
 
     public function delete(Post $post)
     {
         $post->delete();
-        return redirect('/posts');
+        return redirect('/');
     }
 }

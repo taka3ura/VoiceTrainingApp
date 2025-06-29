@@ -25,5 +25,6 @@ class Post extends Model
         'title',
         'body',
         'user_id',
+        'audio_url',
     ];
 }

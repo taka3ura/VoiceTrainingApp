@@ -17,6 +17,7 @@ class PostSeeder extends Seeder
         DB::table('posts')->insert([
             [
                 'body' => 'これは最初の投稿です。',
+                'audio_url' => null,
                 'user_id' => 1, // ユーザーIDを適切に設定
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
@@ -24,13 +25,15 @@ class PostSeeder extends Seeder
             ],
             [
                 'body' => 'これは二番目の投稿です。',
-                'user_id' => 1,
+                'audio_url' => null,
+                'user_id' => 2,
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
                 'deleted_at' => null,
             ],
             [
                 'body' => 'これは三番目の投稿です。',
+                'audio_url' => null,
                 'user_id' => 1,
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
@@ -38,13 +41,15 @@ class PostSeeder extends Seeder
             ],
             [
                 'body' => 'これは四番目の投稿です。',
-                'user_id' => 1,
+                'audio_url' => null,
+                'user_id' => 2,
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
                 'deleted_at' => null,
             ],
             [
                 'body' => 'これは五番目の投稿です。',
+                'audio_url' => null,
                 'user_id' => 1,
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
@@ -52,13 +57,15 @@ class PostSeeder extends Seeder
             ],
             [
                 'body' => 'これは六番目の投稿です。',
-                'user_id' => 1,
+                'audio_url' => null,
+                'user_id' => 2,
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
                 'deleted_at' => null,
             ],
             [
                 'body' => 'これは七番目の投稿です。',
+                'audio_url' => null,
                 'user_id' => 1,
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
@@ -66,13 +73,15 @@ class PostSeeder extends Seeder
             ],
             [
                 'body' => 'これは八番目の投稿です。',
-                'user_id' => 1,
+                'audio_url' => null,
+                'user_id' => 2,
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
                 'deleted_at' => null,
             ],
             [
                 'body' => 'これは九番目の投稿です。',
+                'audio_url' => null,
                 'user_id' => 1,
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
@@ -80,6 +89,15 @@ class PostSeeder extends Seeder
             ],
             [
                 'body' => 'これは十番目の投稿です。',
+                'audio_url' => null,
+                'user_id' => 2,
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(),
+                'deleted_at' => null,
+            ],
+            [
+                'body' => 'これは十一番目の投稿です。',
+                'audio_url' => null,
                 'user_id' => 1,
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),

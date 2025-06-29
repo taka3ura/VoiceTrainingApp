@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('body');
+            $table->string('audio_url')->nullable();
             $table->unsignedBigInteger('user_id'); // 外部キーとして追加するカラム
             $table->timestamps(); // ここで created_at と updated_at が追加される
             $table->softDeletes();

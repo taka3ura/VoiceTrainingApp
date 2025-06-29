@@ -14,6 +14,7 @@
 
 .user_name {
     font-weight: bold; /* 文字を太くする */
+    padding-left: 5px;
 }
 
 .user_information {
@@ -21,10 +22,21 @@
     align-items: center;
 }
 
-.user_information img {
+.circle {
     width: 40px;
     height: 40px;
-    margin-right: 5px;
+    border-radius: 50%; /* 円形にする */
+    position: relative; /* 基準値とする */
+    overflow: hidden; /* はみ出た部分を非表示 */
+}
+
+.circle img {
+    position: absolute; /* 相対位置に指定 */
+    top: 0;
+    left: 0;
+    width: auto;
+    height: auto;
+    object-fit: cover; /* 画像の表示サイズを調整 ※IE非対応 */
 }
 
 .post_edit {
