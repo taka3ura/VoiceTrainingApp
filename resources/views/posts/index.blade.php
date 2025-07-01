@@ -7,11 +7,15 @@
         <form action="/posts" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="body">
-                <textarea name="post[body]" placeholder="練習したよ！">{{ old('post.body') }}</textarea>
+                <textarea class="my-textarea" name="post[body]" placeholder="練習したよ！">{{ old('post.body') }}</textarea>
             </div>
             <p class="body__error" style="color:red">{{ $errors->first('post.body') }}</p>
             <div class="audio">
-                <input type="file" name="audio" accept="audio/*">
+                <input type="file" id="audio" name="audio" accept="audio/*" style="display: none;">
+                <label for="audio" class="custom-file-upload">
+                    <img src="https://res.cloudinary.com/dee34nq47/image/upload/v1751204819/%E9%9F%B3%E6%A5%BD%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3_4_ylfln6.png" alt="Upload Audio" />
+                    <p id="file-name">音声ファイル</p>
+                </label>
             </div>
             <input type="submit" value="投稿" />
         </form>
@@ -55,5 +59,9 @@
                 document.getElementById(`form_${id}`).submit();
             }
         }
+        document.getElementById('audio').addEventListener('change', function() {
+            const fileName = this.files.length > 0 ? this.files[0].name : '音声ファイル';
+            document.getElementById('file-name').textContent = fileName;
+        });
     </script>
 </x-app-layout>

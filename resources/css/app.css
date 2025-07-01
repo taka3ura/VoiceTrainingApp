@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+    font-family: "Noto Sans JP", sans-serif; /* デフォルトのフォント */
+}
+
 .post {
     border-bottom: 1px solid #e4e3e3; /* ボーダーの設定 */
     padding: 10px; /* 内側のスペース */
@@ -22,6 +26,46 @@
     align-items: center;
 }
 
+.new_post {
+    border-bottom: 1px solid #e4e3e3; /* ボーダーの設定 */
+    padding: 10px; /* 内側のスペース */
+    transition: background-color 0.3s; /* ホバー時のトランジション */
+}
+
+.post:hover {
+    background-color: rgba(181, 179, 211, 0.05);
+}
+
+.custom-file-upload {
+    display: flex; /* フレックスボックスを使用 */
+    align-items: center; /* 垂直方向に中央揃え */
+    cursor: pointer; /* カーソルをポインターに変更 */
+    transition: background-color 0.3s; /* ホバー時のスムーズな背景色の変化 */
+}
+
+.custom-file-upload:hover {
+    background-color: rgba(0, 0, 0, 0.1); /* ホバー時の背景色 */
+}
+
+.custom-file-upload img {
+    margin-right: 10px; /* 画像とテキストの間にスペースを追加 */
+    width: 40px; /* 画像のサイズを調整（必要に応じて変更） */
+    height: auto; /* アスペクト比を保つ */
+}
+
+.custom-file-upload p {
+    margin: 0; /* デフォルトのマージンをリセット */
+    transition: color 0.3s; /* ホバー時のテキストカラーの変化 */
+}
+
+.custom-file-upload:hover p {
+    color: #007bff; /* ホバー時のテキストカラー */
+}
+
+.my-textarea {
+    width: 80%; /* 幅を設定 */
+    margin: 5px;
+}
 .circle {
     width: 40px;
     height: 40px;
@@ -32,11 +76,12 @@
 
 .circle img {
     position: absolute; /* 相対位置に指定 */
-    top: 0;
-    left: 0;
-    width: auto;
-    height: auto;
-    object-fit: cover; /* 画像の表示サイズを調整 ※IE非対応 */
+    top: 50%; /* 中央に配置 */
+    left: 50%; /* 中央に配置 */
+    width: 100%; /* 幅を100%に設定 */
+    height: 100%; /* 高さを100%に設定 */
+    object-fit: cover; /* 画像をカバー */
+    transform: translate(-50%, -50%); /* 中央に配置 */
 }
 
 .post_edit {
