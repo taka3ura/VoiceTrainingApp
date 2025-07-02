@@ -18,7 +18,9 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'HIKAKIN',
                 'email' => 'hikakin@example.com',
-                'image' => null,
+                'image' => 'https://res.cloudinary.com/dee34nq47/image/upload/v1751206242/d1yyyuw9koonvzul201w.jpg',
+                'practice_days' => 0, // 練習した日数の初期値
+                'last_practice_date' => null, // 最終処理した日付
                 'email_verified_at' => now(),
                 'password' => bcrypt('password123'), // パスワードはハッシュ化
                 'remember_token' => Str::random(10),
@@ -29,6 +31,8 @@ class UsersTableSeeder extends Seeder
                 'name' => 'SEIKIN',
                 'email' => 'seikin@example.com',
                 'image' => null,
+                'practice_days' => 0, // 練習した日数の初期値
+                'last_practice_date' => null, // 最終処理した日付
                 'email_verified_at' => now(),
                 'password' => bcrypt('password456'), // パスワードはハッシュ化
                 'remember_token' => Str::random(10),

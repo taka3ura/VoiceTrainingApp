@@ -103,3 +103,11 @@ body {
 .paginate a:hover {
     color: #016bdc;
 }
+
+.custom-width {
+    width: 15%; /* 画面の10%に設定 */
+}
+
+.character-width {
+    width: 35%;
+}

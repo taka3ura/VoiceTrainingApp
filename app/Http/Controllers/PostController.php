@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PostRequest;
@@ -37,8 +36,23 @@ class PostController extends Controller
         }
         $input['user_id'] = Auth::id();
         $post->fill($input)->save();
+
+        // Userに関する処理を追加
+        $user = Auth::user(); // 現在のユーザーを取得
+        $today = now()->toDateString(); // 今日の日付を取得
+
+        // 最終処理した日付と今日の日付が異なる場合
+        if ($user->last_practice_date !== $today) {
+            $user->practice_days += 1; // 練習した日数を1増やす
+            $user->last_practice_date = $today; // 最終処理した日付を今日の日付に更新
+
+            // ここでユーザー情報を保存
+            $user->save(); // ユーザー情報を保存
+        }
+
         return redirect('/');
     }
+
 
     public function edit(Post $post)
     {
