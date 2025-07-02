@@ -28,6 +28,7 @@
                 {{ $slot }}
             </main>
         </div>
+        @include('layouts.character-menu')
     </div>
 </body>
 

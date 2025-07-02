@@ -1,11 +1,6 @@
-<div class="hidden md:flex flex-col justify-between w-64 bg-white border-r border-gray-200 p-3 sticky top-0 h-screen">
+<div class="hidden md:flex flex-col justify-between custom-width bg-white border-r border-gray-200 p-3 sticky top-0 h-screen">
     {{-- ▼変更点: 上部にロゴとリンク --}}
     <div>
-        {{-- ユーザーアイコンとアプリ名 --}}
-        <div class="flex items-center space-x-2 mb-6">
-            <div class="circle"><img src="{{ Auth::user()->image ?? asset('default-image.jpg') }}" alt="プロフィール画像"></div>
-            <a href="{{ route('dashboard') }}" class="text-xl font-bold text-gray-800">ボイトレ応援キャラバン</a>
-        </div>
         {{-- 変更点:ナビゲーションリンク（縦並び --}}
         <div class="flex flex-col space-y-3">
             <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
@@ -21,6 +16,11 @@
                 新規投稿
             </x-nav-link>
         </div>
+        {{-- ユーザーアイコン --}}
+        <div class="flex items-center space-x-2 mb-6">
+            <div class="circle"><img src="{{ Auth::user()->image ?? asset('default-image.jpg') }}" alt="プロフィール画像"></div>
+        </div>
+
     </div>
     {{-- 変更点: 下部にログアウトボタン --}}
     <div>
@@ -33,12 +33,11 @@
     </div>
 </div>
 {{-- ▼変更点: モバイル表示用のナビゲーション --}}
-<nav x-data="{ open: false }" class="md:hidden bg-white border-b border-gray-100">
+<nav x-data="{ open: false }" class="md:hidden bg-white border-b border-gray-100 custom-width">
     <div class="px-4 py-2 flex justify-between items-center">
         {{-- ロゴ・アプリ名 --}}
         <div class="flex items-center space-x-2 min-w-0 overflow-hidden">
             <div class="circle"><img src="{{ Auth::user()->image ?? asset('default-image.jpg') }}" alt="プロフィール画像"></div>
-            <a href="{{ route('dashboard') }}" class="truncate text-lg font-bold text-gray-800">ボイトレ応援キャラバン</a>
         </div>
         {{-- ハンバーガーメニュー --}}
         <button @click="open = ! open" class="ms-auto p-2 rounded-md text-gray-400 hover:text-gray-600 focus:outline-none">

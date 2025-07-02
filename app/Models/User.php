@@ -22,6 +22,8 @@ class User extends Authenticatable
         'email',
         'password',
         'image',
+        'practice_days',
+        'last_practice_date',
     ];
 
     /**
