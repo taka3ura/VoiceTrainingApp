@@ -15,9 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('image')->nullable();
-            $table->integer('practice_days')->default(0);
+            $table->string('image')->nullable(); // プロフィール画像など
+            $table->integer('practice_days')->default(0); // 練習日数 (ユーザーレベル算出に使用)
             $table->date('last_practice_date')->nullable();
+            // 現在設定されているキャラクターのIDを保持する外部キー
+            $table->foreignId('current_character_id')->nullable()->default(1)->constrained('characters')->onDelete('set null');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
