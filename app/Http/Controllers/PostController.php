@@ -6,6 +6,7 @@ use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PostRequest;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+use App\Models\Character; // Characterモデルをインポート
 
 class PostController extends Controller
 {
@@ -41,6 +42,9 @@ class PostController extends Controller
         $user = Auth::user(); // 現在のユーザーを取得
         $today = now()->toDateString(); // 今日の日付を取得
 
+        // ユーザーの現在のレベルを、練習日数を増やす前に取得
+        $oldLevel = $user->level;
+
         // 最終処理した日付と今日の日付が異なる場合
         if ($user->last_practice_date !== $today) {
             $user->practice_days += 1; // 練習した日数を1増やす
@@ -48,6 +52,26 @@ class PostController extends Controller
 
             // ここでユーザー情報を保存
             $user->save(); // ユーザー情報を保存
+
+            // 練習日数が更新された後の新しいレベルを取得
+            $newLevel = $user->level;
+
+            // レベルが上がったかどうかをチェック
+            if ($newLevel > $oldLevel) {
+                // 新しいレベルで開放されるキャラクターをチェックし、紐付ける
+                $unlockableCharacters = Character::where('required_level', '<=', $newLevel)
+                    ->get();
+
+                $newlyUnlocked = collect(); // 新しく開放されたキャラクターを格納するコレクション
+
+                foreach ($unlockableCharacters as $character) {
+                    // ユーザーがまだこのキャラクターを所有していない場合のみ紐付ける
+                    if (!$user->characters->contains($character->id)) {
+                        $user->characters()->attach($character->id);
+                        $newlyUnlocked->push($character);
+                    }
+                }
+            }
         }
 
         return redirect('/');
