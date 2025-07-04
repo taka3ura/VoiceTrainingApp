@@ -3,7 +3,10 @@
     <p>やっほー</p>
     <p>練習{{ Auth::user()->practice_days }}日目</p>
     <p>最後に練習したのは{{ Auth::user()->last_practice_date }}</p>
-    <div class="mt-auto flex justify-center w-full">
-        <img src="https://res.cloudinary.com/dee34nq47/image/upload/v1751433859/1_1_xavnvv.png" alt="キャラクター画像" style="width: 80%;">
+    <p>現在のレベルは{{ Auth::user()->level }}</p>
+    <div id="image-carousel" style="width: 90%; margin: 0 auto;">
+        @foreach(Auth::user()->currentCharacter->images as $image)
+        <img src="{{ asset($image->image_url) }}" alt="{{ Auth::user()->currentCharacter->name }}の画像" class="carousel-image">
+        @endforeach
     </div>
 </div>
