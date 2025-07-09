@@ -1,12 +1,18 @@
-import { defineConfig } from 'vite';
-import laravel from 'laravel-vite-plugin';
+import { defineConfig } from "vite";
+import laravel from "laravel-vite-plugin";
 
 export default defineConfig({
     plugins: [
         laravel({
             input: [
-                'resources/css/app.css',
-                'resources/js/app.js',
+                "resources/css/app.css",
+                "resources/css/components/character_menu.css",
+                "resources/css/components/navigation.css",
+                "resources/css/layouts/main_layout.css",
+                "resources/css/pages/posts_index.css",
+                "resources/js/app.js",
+                "resources/js/post_actions.js",
+                "resources/js/character_menu.js",
             ],
             refresh: true,
         }),
