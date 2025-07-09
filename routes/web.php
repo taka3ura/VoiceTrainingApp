@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\LikeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,11 @@ Route::controller(PostController::class)->middleware(['auth'])->group(function (
     Route::get('/posts/{post}/edit', 'edit');
     Route::put('/posts/{post}', 'update');
     Route::delete('/posts/{post}', 'delete');
+});
+
+Route::middleware('auth')->group(function () {
+    // いいね/いいね解除のトグル機能（POSTリクエストでいいねを切り替える）
+    Route::post('/posts/{post}/like', [LikeController::class, 'likePost'])->name('posts.like');
 });
 
 require __DIR__ . '/auth.php';

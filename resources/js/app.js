@@ -1,5 +1,5 @@
 import "./bootstrap";
-
+import "./like"; // 追加
 import Alpine from "alpinejs";
 
 window.Alpine = Alpine;

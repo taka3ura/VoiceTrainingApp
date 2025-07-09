@@ -90,6 +90,18 @@ body {
     gap: 5px;
 }
 
+.like-container {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* アイコンと数字の間のスペース */
+}
+
+.post_actions {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* 必要に応じて調整してください */
+}
+
 .paginate {
     display: flex; /* Flexboxを使用して横並びにする */
     justify-content: center; /* 中央寄せ */

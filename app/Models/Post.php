@@ -10,9 +10,16 @@ class Post extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function likes()
+    {
+        // User / Post has many Likes
+        return $this->hasMany(Like::class);
     }
 
     public function getPaginateByLimit(int $limit_count = 10)

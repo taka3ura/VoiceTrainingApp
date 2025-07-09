@@ -72,6 +72,13 @@ class User extends Authenticatable
         return $this->belongsTo(Character::class, 'current_character_id');
     }
 
+    public function likes()
+    {
+        // User / Post has many Likes
+        return $this->hasMany(Like::class);
+    }
+
+
     /**
      * ユーザーの現在のレベルを算出します。（アクセサ）
      * practice_days に基づいてレベルを計算します。

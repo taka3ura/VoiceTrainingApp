@@ -71,6 +71,15 @@ class PostController extends Controller
                         $newlyUnlocked->push($character);
                     }
                 }
+
+                if ($newlyUnlocked->isNotEmpty()) {
+                    // 新しくアンロックされたキャラクターの中で、最後のキャラクターのIDを取得
+                    $lastUnlockedCharacterId = $newlyUnlocked->last()->id;
+
+                    // ユーザーの current_character_id を更新
+                    $user->current_character_id = $lastUnlockedCharacterId;
+                    $user->save(); // ユーザー情報を再度保存
+                }
             }
         }
 
