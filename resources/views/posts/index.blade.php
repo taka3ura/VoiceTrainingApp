@@ -7,7 +7,7 @@
         <form action="/posts" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="body">
-                <textarea class="my-textarea" name="post[body]" placeholder="練習したよ！">{{ old('post.body') }}</textarea>
+                <textarea class="my-textarea" name="post[body]" placeholder="歌ってみた！">{{ old('post.body') }}</textarea>
             </div>
             <p class="body__error" style="color:red">{{ $errors->first('post.body') }}</p>
             <div class="audio">
@@ -36,32 +36,55 @@
                 </audio>
                 @endif
             </p>
-            @if ($post->user_id === Auth::id())
-            <div class="post_edit">
-                <a href="/posts/{{ $post->id }}/edit">編集</a>
-                <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
-                    @csrf
-                    @method('DELETE')
-                    <button type="button" onclick="deletePost({{ $post->id }})">削除</button>
-                </form>
+            <div class="post_actions">
+                <div class="like-container">
+                    @auth
+                    @php
+                    $likeUrl = route('posts.like', ['post' => $post->id]);
+                    // ★重要: likesCount変数をここで定義し、初期表示に使う
+                    $currentLikesCount = $post->likes->count();
+                    // 初期表示でいいね済みかどうかもここで確実に判定
+                    $isLikedByUserInitial = Auth::user()->likes()->where('post_id', $post->id)->exists();
+                    @endphp
+
+                    {{-- いいね済みなら塗りつぶしハート、そうでなければアウトラインハート --}}
+                    @if($isLikedByUserInitial)
+                    <ion-icon
+                        name="heart"
+                        class="like-btn cursor-pointer text-pink-500"
+                        id="like-icon-{{$post->id}}"
+                        data-post-id="{{$post->id}}"
+                        data-like-url="{{ $likeUrl }}"></ion-icon>
+                    @else
+                    <ion-icon
+                        name="heart-outline"
+                        class="like-btn cursor-pointer"
+                        id="like-icon-{{$post->id}}"
+                        data-post-id="{{$post->id}}"
+                        data-like-url="{{ $likeUrl }}"></ion-icon>
+                    @endif
+
+                    {{-- ★いいねカウント表示を定義した変数で確実にする --}}
+                    <p class="likes-count" id="likes-count-{{ $post->id }}">{{$currentLikesCount}}</p>
+                    @endauth
+                </div>
+                @if ($post->user_id === Auth::id())
+                <div class="post_edit">
+                    <a href="/posts/{{ $post->id }}/edit">編集</a>
+                    <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="button" onclick="deletePost({{ $post->id }})">削除</button>
+                    </form>
+                </div>
+                @endif
             </div>
-            @endif
         </div>
         @endforeach
     </div>
     <div class='paginate'>
         {{ $posts->links() }}
     </div>
-    <script>
-        function deletePost(id) {
-            'use strict'
-            if (confirm('削除すると復元できません。\n本当に削除しますか？')) {
-                document.getElementById(`form_${id}`).submit();
-            }
-        }
-        document.getElementById('audio').addEventListener('change', function() {
-            const fileName = this.files.length > 0 ? this.files[0].name : '音声ファイル';
-            document.getElementById('file-name').textContent = fileName;
-        });
-    </script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </x-app-layout>

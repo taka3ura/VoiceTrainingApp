@@ -1,0 +1,23 @@
+.character-width {
+    width: 35%;
+}
+
+.carousel-image {
+    width: 100%; /* コンテナいっぱいに画像を広げる */
+    /* 画像を重ねて配置するためにpositionを使用 */
+    position: absolute; /* 親要素がposition: relative; だと良い */
+    top: 0;
+    left: 0;
+    opacity: 0; /* フェードインのために最初は透明に */
+    transition: opacity 2s ease-in-out; /* 2秒間スムーズなトランジション */
+}
+
+.carousel-image.active {
+    opacity: 1; /* アクティブな画像は表示 */
+}
+
+#image-carousel {
+    position: relative;
+    height: 400px; /* 画像の高さに合わせて調整してください */
+    overflow: hidden; /* はみ出した画像を隠す */
+}

@@ -1,0 +1,109 @@
+/* ポスト */
+.post {
+    border-bottom: 1px solid #e4e3e3; /* ボーダーの設定 */
+    padding: 10px; /* 内側のスペース */
+    transition: background-color 0.3s; /* ホバー時のトランジション */
+}
+
+.post:hover {
+    background-color: rgba(0, 0, 0, 0.05); /* ホバー時に薄いグレー */
+}
+/* いいね、編集、削除 */
+.post_actions {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* 必要に応じて調整してください */
+}
+
+.post_edit {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.like-container {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* アイコンと数字の間のスペース */
+}
+
+/* ユーザー情報 */
+.user_name {
+    font-weight: bold; /* 文字を太くする */
+    padding-left: 5px;
+}
+
+.user_information {
+    display: flex;
+    align-items: center;
+}
+
+.circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* 円形にする */
+    position: relative; /* 基準値とする */
+    overflow: hidden; /* はみ出た部分を非表示 */
+}
+
+.circle img {
+    position: absolute; /* 相対位置に指定 */
+    top: 50%; /* 中央に配置 */
+    left: 50%; /* 中央に配置 */
+    width: 100%; /* 幅を100%に設定 */
+    height: 100%; /* 高さを100%に設定 */
+    object-fit: cover; /* 画像をカバー */
+    transform: translate(-50%, -50%); /* 中央に配置 */
+}
+
+/* 新規投稿 */
+.new_post {
+    border-bottom: 1px solid #e4e3e3; /* ボーダーの設定 */
+    padding: 10px; /* 内側のスペース */
+    transition: background-color 0.3s; /* ホバー時のトランジション */
+}
+.my-textarea {
+    width: 80%; /* 幅を設定 */
+    margin: 5px;
+}
+/* 音声ファイル投稿 */
+.custom-file-upload {
+    display: flex; /* フレックスボックスを使用 */
+    align-items: center; /* 垂直方向に中央揃え */
+    cursor: pointer; /* カーソルをポインターに変更 */
+    transition: background-color 0.3s; /* ホバー時のスムーズな背景色の変化 */
+}
+
+.custom-file-upload:hover {
+    background-color: rgba(0, 0, 0, 0.1); /* ホバー時の背景色 */
+}
+
+.custom-file-upload img {
+    margin-right: 10px; /* 画像とテキストの間にスペースを追加 */
+    width: 40px; /* 画像のサイズを調整（必要に応じて変更） */
+    height: auto; /* アスペクト比を保つ */
+}
+
+.custom-file-upload p {
+    margin: 0; /* デフォルトのマージンをリセット */
+    transition: color 0.3s; /* ホバー時のテキストカラーの変化 */
+}
+
+.custom-file-upload:hover p {
+    color: #007bff; /* ホバー時のテキストカラー */
+}
+
+/* ページネーション */
+.paginate {
+    display: flex; /* Flexboxを使用して横並びにする */
+    justify-content: center; /* 中央寄せ */
+    gap: 10px; /* リンク間の隙間を設定 */
+}
+
+.paginate a {
+    color: #333; /* テキストの色 */
+}
+
+.paginate a:hover {
+    color: #016bdc;
+}

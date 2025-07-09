@@ -7,7 +7,7 @@
         <form action="/posts" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="body">
-                <textarea class="my-textarea" name=" post[body]" placeholder="練習したよ！">{{ old('post.body') }}</textarea>
+                <textarea class="my-textarea" name=" post[body]" placeholder="歌ってみた！">{{ old('post.body') }}</textarea>
             </div>
             <p class="body__error" style="color:red">{{ $errors->first('post.body') }}</p>
             <div class="audio">
