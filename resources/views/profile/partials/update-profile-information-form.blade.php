@@ -1,11 +1,11 @@
 <section>
     <header>
         <h2 class="text-lg font-medium text-gray-900">
-            {{ __('Profile Information') }}
+            ユーザー情報
         </h2>
 
         <p class="mt-1 text-sm text-gray-600">
-            {{ __("Update your account's profile information and email address.") }}
+            ユーザー情報の変更ができます
         </p>
     </header>
 
@@ -17,20 +17,27 @@
         @csrf
         @method('patch')
 
+        <!-- 名前 -->
         <div>
-            <x-input-label for="name" :value="__('Name')" />
+            <x-input-label for="name" value="名前" />
             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
-        <!-- image -->
+        <!-- プロフィール画像 -->
         <div>
-            <x-input-label for="image" :value="__('Image')" />
+            <x-input-label for="image" value="プロフィール画像" />
             <x-user-image /><!-- user-image.blade.phpの内容をインポート -->
             <x-input-error class="mt-2" :messages="$errors->get('image')" />
         </div>
-
+        <!-- プロフィール文 -->
         <div>
-            <x-input-label for="email" :value="__('Email')" />
+            <x-input-label for="profile_description" value="プロフィール文" />
+            <textarea id="profile_description" name="profile_description" class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" rows="3">{{ old('profile_description', $user->profile_description) }}</textarea>
+            <x-input-error class="mt-2" :messages="$errors->get('profile_description')" />
+        </div>
+        <!-- メールアドレス -->
+        <div>
+            <x-input-label for="email" value="メールアドレス" />
             <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
             <x-input-error class="mt-2" :messages="$errors->get('email')" />
 

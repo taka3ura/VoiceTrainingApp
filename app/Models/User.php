@@ -24,6 +24,7 @@ class User extends Authenticatable
         'email',
         'password',
         'image',
+        'profile_description',
         'practice_days',
         'last_practice_date',
         'current_character_id',
