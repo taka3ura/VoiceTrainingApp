@@ -1,45 +1,34 @@
 <x-app-layout>
-    <div class="new_post">
+    <!-- ユーザー情報 -->
+    <div class="profile">
         <div class="user_information">
-            <div class="circle"><img src="{{ Auth::user()->image ?? asset('default-image.jpg') }}" alt="プロフィール画像"></div>
-            <p class="user_name">{{ Auth::user()->name }}</p>
+            <div class="circle_show"><img src="{{ $user->image ?? asset('default-image.jpg') }}" alt="{{ $user->name }}のプロフィール画像"></div>
+            <h2 class='user_name_show'>{{ $user->name }}</h2>
         </div>
-        <form action="/posts" method="POST" enctype="multipart/form-data">
-            @csrf
-            <div class="body">
-                <textarea class="my-textarea" name="post[body]" placeholder="歌ってみた！">{{ old('post.body') }}</textarea>
-            </div>
-            <p class="body__error" style="color:red">{{ $errors->first('post.body') }}</p>
-            <div class="audio">
-                <input type="file" id="audio" name="audio" accept="audio/*" style="display: none;">
-                <label for="audio" class="custom-file-upload">
-                    <img src="https://res.cloudinary.com/dee34nq47/image/upload/v1751204819/%E9%9F%B3%E6%A5%BD%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3_4_ylfln6.png" alt="Upload Audio" />
-                    <p id="file-name">音声ファイル</p>
-                </label>
-            </div>
-            <input type="submit" value="投稿" />
-        </form>
+        <p class="mt-2 text-gray-700">{{ $user->profile_description ?? 'プロフィール文はまだありません。' }}</p>
     </div>
-    <div class='posts'>
+    <!-- ユーザーの投稿一覧 -->
+    <div class="user_posts">
+        @if ($posts->isEmpty())
+        <p class="text-gray-600">まだ投稿がありません。</p>
+        @else
         @foreach ($posts as $post)
-        <div class='post' data-post-id="{{ $post->id }}">
+        <div class='post'>
             <div class="user_information">
-                <a href="{{ route('users.show', ['user' => $post->user->id]) }}" class="flex items-center no-navigate-post">
-                    <div class="circle"><img src="{{ $post->user->image ?? asset('default-image.jpg') }}" alt="プロフィール画像"></div>
-                    <h2 class='user_name'>{{ $post->user->name }}</h2>
-                </a>
+                <div class="circle"><img src="{{ $post->user->image ?? asset('default-image.jpg') }}" alt="プロフィール画像"></div>
+                <h2 class='user_name'>{{ $post->user->name }}</h2>
             </div>
             <p class='body'>
                 <a href="/posts/{{ $post->id }}">{{ $post->body }}</a>
                 @if ($post->audio_url)
-                <audio controls class="no-navigate-post">
+                <audio controls>
                     <source src="{{ $post->audio_url }}">
                     あなたのブラウザはaudioに対応していません。
                 </audio>
                 @endif
             </p>
             <div class="post_actions">
-                <div class="like-container no-navigate-post">
+                <div class="like-container">
                     @auth
                     @php
                     $likeUrl = route('posts.like', ['post' => $post->id]);
@@ -71,7 +60,7 @@
                     @endauth
                 </div>
                 @if ($post->user_id === Auth::id())
-                <div class="post_edit no-navigate-post">
+                <div class="post_edit">
                     <a href="/posts/{{ $post->id }}/edit">編集</a>
                     <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
                         @csrf
@@ -83,10 +72,12 @@
             </div>
         </div>
         @endforeach
+        @endif
     </div>
     <div class='paginate'>
         {{ $posts->links() }}
     </div>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
 </x-app-layout>
