@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('image')->nullable(); // プロフィール画像など
             $table->string('profile_description')->nullable(); // プロフィール文を新しく追加
+            $table->text('practice_menu')->nullable(); // 練習メニューを文章で書ける
             $table->integer('practice_days')->default(0); // 練習日数 (ユーザーレベル算出に使用)
             $table->date('last_practice_date')->nullable();
             // 現在設定されているキャラクターのIDを保持する外部キー

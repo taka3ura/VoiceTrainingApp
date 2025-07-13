@@ -4,6 +4,8 @@
 
 .carousel-image {
     width: 100%; /* コンテナいっぱいに画像を広げる */
+    height: 100%; /* 親コンテナの高さに合わせて画像を広げる */
+    object-fit: contain;
     /* 画像を重ねて配置するためにpositionを使用 */
     position: absolute; /* 親要素がposition: relative; だと良い */
     top: 0;
@@ -18,6 +20,53 @@
 
 #image-carousel {
     position: relative;
-    height: 400px; /* 画像の高さに合わせて調整してください */
-    overflow: hidden; /* はみ出した画像を隠す */
+    height: 100%; /* コンテンツや画像の高さに合わせる */
+    max-height: 35vh; /* 画面の高さの35%を最大とする */
+}
+
+.practice-menu-container {
+    background-color: white; /* 白い紙の背景色 */
+    border: 1px solid #ccc; /* 軽く枠線をつけるなら */
+    border-radius: 5px; /* 角を少し丸くするなら */
+    padding: 20px; /* 内側の余白 */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    max-height: 35vh; /* 画面の高さの35%を最大とする */
+    overflow-y: auto;
+}
+
+.complete-practice-button {
+    /* 背景色と文字色 */
+    background-color: #4caf50; /* 緑系の色 */
+    color: white; /* 白い文字 */
+    font-weight: bold;
+
+    /* パディング（内側の余白） */
+    padding: 5px 10px;
+
+    /* ボーダー（枠線） */
+    border: none; /* 枠線をなくす */
+    border-radius: 5px; /* 角を丸くする */
+
+    /* 文字のサイズと太さ */
+    font-size: 16px; /* フォントサイズ */
+
+    /* カーソル（マウスオーバー時） */
+    cursor: pointer; /* マウスを乗せたときに指マークにする */
+
+    /* マージン（外側の余白） */
+    margin: 10px; /* 上に少し余白を作る */
+
+    /* ホバー時の変化（マウスを乗せたとき） */
+    transition: background-color 0.3s ease; /* 色の変化を滑らかにする */
+}
+
+/* マウスを乗せたときのスタイル */
+.complete-practice-button:hover {
+    background-color: #45a049; /* 少し濃い緑に変化 */
+}
+
+/* クリック中のスタイル */
+.complete-practice-button:active {
+    background-color: #3e8e41; /* さらに濃い緑に変化 */
+    transform: translateY(1px); /* 少し下に動かすことで、押されている感を出す */
 }

@@ -6,6 +6,9 @@
             <h2 class='user_name_show'>{{ $user->name }}</h2>
         </div>
         <p class="mt-2 text-gray-700">{{ $user->profile_description ?? 'プロフィール文はまだありません。' }}</p>
+        <p>練習{{ Auth::user()->practice_days }}日目</p>
+        <p>最後に練習したのは{{ Auth::user()->last_practice_date }}</p>
+        <p>現在のレベルは{{ Auth::user()->level }}</p>
     </div>
     <!-- ユーザーの投稿一覧 -->
     <div class="user_posts">
@@ -17,6 +20,7 @@
             <div class="user_information">
                 <div class="circle"><img src="{{ $post->user->image ?? asset('default-image.jpg') }}" alt="プロフィール画像"></div>
                 <h2 class='user_name'>{{ $post->user->name }}</h2>
+                <p class="post-date ml-2 text-sm text-gray-500">{{ $post->created_at->format('Y/m/d H:i') }}</p>
             </div>
             <p class='body'>
                 <a href="/posts/{{ $post->id }}">{{ $post->body }}</a>

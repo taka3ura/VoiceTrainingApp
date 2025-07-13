@@ -25,6 +25,7 @@ class User extends Authenticatable
         'password',
         'image',
         'profile_description',
+        'practice_menu',
         'practice_days',
         'last_practice_date',
         'current_character_id',

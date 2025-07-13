@@ -27,6 +27,7 @@ class ProfileUpdateRequest extends FormRequest
             ],
             'image' => ['file', 'mimes:gif,png,jpg,webp', 'max:5120'],  // 5MB に変更
             'profile_description' => ['nullable', 'string', 'max:255'],
+            'practice_menu' => ['nullable', 'string', 'max:65000'],
         ];
     }
 }
