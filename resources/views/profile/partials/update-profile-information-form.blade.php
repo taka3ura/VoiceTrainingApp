@@ -16,7 +16,29 @@
     <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
         @csrf
         @method('patch')
+        <!-- 練習メニュー -->
+        <div>
+            <x-input-label for="practice_menu" value="練習メニュー" />
+            <textarea
+                id="practice_menu"
+                name="practice_menu"
+                class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                rows="8">{{ old('practice_menu', $user->practice_menu) }}</textarea>
+            <x-input-error class="mt-2" :messages="$errors->get('practice_menu')" />
+        </div>
+        <!-- 保存ボタン -->
+        <div class="flex items-center gap-4">
+            <x-primary-button>保存</x-primary-button>
 
+            @if (session('status') === 'profile-updated')
+            <p
+                x-data="{ show: true }"
+                x-show="show"
+                x-transition
+                x-init="setTimeout(() => show = false, 2000)"
+                class="text-sm text-gray-600">{{ __('Saved.') }}</p>
+            @endif
+        </div>
         <!-- 名前 -->
         <div>
             <x-input-label for="name" value="名前" />
@@ -61,7 +83,7 @@
         </div>
 
         <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
+            <x-primary-button>保存</x-primary-button>
 
             @if (session('status') === 'profile-updated')
             <p

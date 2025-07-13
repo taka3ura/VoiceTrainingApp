@@ -8,6 +8,10 @@
 .post:hover {
     background-color: rgba(0, 0, 0, 0.05); /* ホバー時に薄いグレー */
 }
+
+.post_body {
+    padding: 5px 10px 0px 10px;
+}
 /* いいね、編集、削除 */
 .post_actions {
     display: flex;

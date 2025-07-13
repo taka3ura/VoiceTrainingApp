@@ -26,6 +26,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'hikakin@example.com',
             'image' => 'https://res.cloudinary.com/dee34nq47/image/upload/v1751206242/d1yyyuw9koonvzul201w.jpg',
             'profile_description' => 'ブンブンハローYouTube どうもヒカキンです',
+            'practice_menu' => null,
             'practice_days' => 0,
             'last_practice_date' => null,
             'current_character_id' => 1, // マイグレーションのデフォルト値に任せるか、ここで明示的に指定
@@ -41,6 +42,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'seikin@example.com',
             'image' => null,
             'profile_description' => '皆さんこんにちは SEIKINTVのSEIKINです',
+            'practice_menu' => null,
             'practice_days' => 0,
             'last_practice_date' => null,
             'current_character_id' => 1, // マイグレーションのデフォルト値に任せるか、ここで明示的に指定

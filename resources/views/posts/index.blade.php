@@ -28,8 +28,9 @@
                     <div class="circle"><img src="{{ $post->user->image ?? asset('default-image.jpg') }}" alt="プロフィール画像"></div>
                     <h2 class='user_name'>{{ $post->user->name }}</h2>
                 </a>
+                <p class="post-date ml-2 text-sm text-gray-500">{{ $post->created_at->format('Y/m/d H:i') }}</p>
             </div>
-            <p class='body'>
+            <p class='post_body'>
                 <a href="/posts/{{ $post->id }}">{{ $post->body }}</a>
                 @if ($post->audio_url)
                 <audio controls class="no-navigate-post">
