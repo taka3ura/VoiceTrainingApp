@@ -10,9 +10,10 @@ use App\Models\Character; // Characterモデルをインポート
 
 class PostController extends Controller
 {
-    public function index(Post $post) //インポートしたPostをインスタンス化して$postとして使用。
+    public function index()
     {
-        return view('posts.index')->with(['posts' => $post->getPaginateByLimit()]);
+        $posts = Post::with('user')->withCount('replies')->latest()->paginate();
+        return view('posts.index')->with(['posts' => $posts]);
     }
 
     public function show(Post $post)

@@ -11,6 +11,7 @@ export default defineConfig({
                 "resources/css/layouts/main_layout.css",
                 "resources/css/pages/posts_index.css",
                 "resources/css/pages/users_show.css",
+                "resources/css/pages/posts_show.css",
                 "resources/js/app.js",
                 "resources/js/post_actions.js",
                 "resources/js/character_menu.js",

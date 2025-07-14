@@ -40,6 +40,10 @@
                 @endif
             </p>
             <div class="post_actions">
+                <div class="reply-container">
+                    <ion-icon name="chatbubble-outline"></ion-icon>
+                    <p>{{ $post->replies_count }}</p>
+                </div>
                 <div class="like-container no-navigate-post">
                     @auth
                     @php
