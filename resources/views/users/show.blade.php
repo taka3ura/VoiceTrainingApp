@@ -9,7 +9,7 @@
         <p>練習{{ $user->practice_days }}日目</p>
         <p>最後に練習したのは{{ $user->last_practice_date }}</p>
         <p>現在のレベルは{{ $user->level }}</p>
-        <div class="practice-menu-container">
+        <div class="practice-menu-container-profile">
             <h2 class="text-lg font-bold text-black">練習メニュー</h2>
             @if ($user->practice_menu)
             <p style="white-space: pre-wrap; color: black;">{!! $user->practice_menu !!}</p>

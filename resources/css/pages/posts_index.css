@@ -16,7 +16,8 @@
 .post_actions {
     display: flex;
     align-items: center;
-    gap: 15px; /* 必要に応じて調整してください */
+    padding-left: 10px;
+    gap: 25px; /* 必要に応じて調整してください */
 }
 
 .post_edit {
@@ -26,6 +27,12 @@
 }
 
 .like-container {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* アイコンと数字の間のスペース */
+}
+
+.reply-container {
     display: flex;
     align-items: center;
     gap: 5px; /* アイコンと数字の間のスペース */

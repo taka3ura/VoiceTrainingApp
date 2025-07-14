@@ -80,6 +80,13 @@ class User extends Authenticatable
         return $this->hasMany(Like::class);
     }
 
+    /**
+     * このユーザーが作成した返信を取得
+     */
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
+    }
 
     /**
      * ユーザーの現在のレベルを算出します。（アクセサ）

@@ -4,7 +4,9 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\UserController;
+use App\Models\Reply;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +43,11 @@ Route::controller(PostController::class)->middleware(['auth'])->group(function (
 Route::middleware('auth')->group(function () {
     // いいね/いいね解除のトグル機能（POSTリクエストでいいねを切り替える）
     Route::post('/posts/{post}/like', [LikeController::class, 'likePost'])->name('posts.like');
+});
+
+Route::controller(ReplyController::class)->middleware(['auth'])->group(function () {
+    Route::post('posts/{post}/replies', 'store')->name('posts.replies.store');
+    Route::delete('posts/{post}/replies/{reply}', 'destroy')->name('posts.replies.destroy');
 });
 
 require __DIR__ . '/auth.php';
