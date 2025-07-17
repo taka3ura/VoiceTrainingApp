@@ -118,3 +118,10 @@
 .paginate a:hover {
     color: #016bdc;
 }
+
+/* 投稿編集 */
+.edit_post {
+    border-bottom: 1px solid #e4e3e3; /* ボーダーの設定 */
+    padding: 10px; /* 内側のスペース */
+    transition: background-color 0.3s; /* ホバー時のトランジション */
+}
