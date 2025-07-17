@@ -30,4 +30,9 @@
 
 .practice-menu-container-profile {
     padding: 10px 0px;
+    background-color: white; /* 白い紙の背景色 */
+    border: 1px solid #ccc; /* 軽く枠線をつけるなら */
+    border-radius: 5px; /* 角を少し丸くするなら */
+    padding: 20px; /* 内側の余白 */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
