@@ -106,6 +106,14 @@ class User extends Authenticatable
     {
         parent::boot();
 
+        static::creating(function (User $user) {
+            // practice_menu が設定されていない、または空文字列の場合にデフォルト値を設定
+            if (empty($user->practice_menu)) {
+                $user->practice_menu = "呼吸：\n発声：\n意識すること：";
+            }
+            // その他の初期値設定などがあればここに追記
+        });
+
         // ユーザーが新しく作成された（データベースに保存された）後に実行
         static::created(function (User $user) {
             // レベル1のキャラクターを取得
