@@ -22,6 +22,22 @@ class UsersTableSeeder extends Seeder
 
         // User::create() を使ってユーザーを作成
         User::create([
+            'name' => 'ナナ',
+            'email' => 'nana@example.com',
+            'image' => 'https://res.cloudinary.com/dee34nq47/image/upload/v1751473623/2_2_afbiq3.png',
+            'profile_description' => '皆さんこんにちは ナナです\nわたしが応援するので歌の練習頑張ろうね！',
+            'practice_menu' => "呼吸：腹式呼吸の練習\n発声：喉は意識せずに伸び伸びと歌う\n意識すること：毎日自分の歌声を録音する",
+            'practice_days' => 100,
+            'last_practice_date' => null,
+            'current_character_id' => 1, // マイグレーションのデフォルト値に任せるか、ここで明示的に指定
+            'email_verified_at' => now(),
+            'password' => Hash::make('password456'), // Hash::make() を使用
+            'remember_token' => Str::random(10),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        User::create([
             'name' => 'HIKAKIN',
             'email' => 'hikakin@example.com',
             'image' => 'https://res.cloudinary.com/dee34nq47/image/upload/v1751206242/d1yyyuw9koonvzul201w.jpg',
