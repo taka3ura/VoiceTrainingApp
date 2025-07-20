@@ -1,3 +1,10 @@
+@import "./components/character_menu.css";
+@import "./components/navigation.css";
+@import "./layouts/main_layout.css";
+@import "./pages/posts_index.css";
+@import "./pages/users_show.css";
+@import "./pages/posts_show.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
