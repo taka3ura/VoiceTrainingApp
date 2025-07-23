@@ -2,14 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\PostRequest;
-use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
-use App\Models\Character; // Characterモデルをインポート
+use App\Http\Requests\PostRequest; // フォームリクエスト (バリデーション定義)
+use App\Models\Post;              // Postモデルをインポート
+use App\Models\Character;         // Characterモデルをインポート (ユーザーのレベルアップ処理で使用)
+use App\Models\Reply;             // Replyモデルをインポート (Geminiの返信保存に使用)
+use App\Models\User;              // Userモデルをインポート (ナナのアカウント取得に使用)
+use Illuminate\Support\Facades\Auth;    // 現在認証されているユーザー情報を取得するファサード
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary; // Cloudinary (画像・音声アップロードサービス) のファサード
+use App\Services\GeminiService; // ★ 作成したGeminiServiceをインポート！
+use Illuminate\Support\Facades\Log;     // デバッグやエラー情報をログファイルに出力するためのファサード
 
 class PostController extends Controller
 {
+
+    protected $geminiService;
+    public function __construct(GeminiService $geminiService)
+    {
+        $this->geminiService = $geminiService;
+    }
+
     public function index()
     {
         $posts = Post::with('user')->withCount('replies')->latest()->paginate();
@@ -38,6 +49,51 @@ class PostController extends Controller
         }
         $input['user_id'] = Auth::id();
         $post->fill($input)->save();
+
+        // --- ★ ここからGeminiによる自動返信の処理 ---
+        // 投稿された文章（body）を取得。もしbodyがなければ空文字列を設定。
+        $postedText = $input['body'] ?? '';
+
+        // 投稿文章が空でない場合のみ、Geminiによる返信処理を行う
+        if (!empty($postedText)) {
+            // Geminiに送るための「プロンプト」（指示文）を作成
+            // ユーザーの投稿内容をプロンプトに含めて、適切な返信を生成するように指示
+            $prompt = "ユーザーが歌の練習の投稿をしました。その投稿内容を褒めて励ます短いメッセージを作成してください。返信は50文字程度で、ポジティブなトーンでお願いします。若い女の子の口調で。\n\n投稿内容: 「" . $postedText . "」";
+
+            // ★ GeminiServiceの generateText() メソッドを呼び出し、AIからの返信テキストを取得
+            // このメソッドは、成功すれば文字列（AIの返信）、失敗すればnullを返す
+            $geminiReplyText = $this->geminiService->generateText($prompt);
+
+            // Geminiからの返信が正常に取得できた場合（nullでなかった場合）
+            if ($geminiReplyText) {
+                // 「ナナ」のアカウントをデータベースから取得
+                // シーダーで設定した「nana.gemini@example.com」メールアドレスで検索する
+                // これにより、IDが変更されても確実にナナアカウントを特定できる
+                $nanaGeminiBot = User::where('email', 'nana@example.com')->first();
+
+                // ナナのアカウントがデータベースで見つかった場合のみ、リプライを保存
+                if ($nanaGeminiBot) {
+                    // 投稿 ($post) に紐づくリプライとして、新しいリプライを作成・保存
+                    // `replies()` はPostモデルで定義したリレーションメソッド
+                    $post->replies()->create([
+                        'user_id' => $nanaGeminiBot->id, // リプライの送信者としてナナのユーザーIDを設定
+                        'body' => $geminiReplyText,       // Geminiが生成した返信テキストを設定
+                    ]);
+                    // ログに成功メッセージを出力
+                    Log::info('Gemini reply by Nana saved for post ID: ' . $post->id);
+                } else {
+                    // ナナのアカウントが見つからない場合はエラーログを出力
+                    Log::error('Nana (Gemini Bot) user with email nana.gemini@example.com not found. Reply could not be saved for post ID: ' . $post->id);
+                }
+            } else {
+                // Geminiが有効な返信を返さなかった場合（例えば、APIエラーやタイムアウトなど）は警告ログを出力
+                Log::warning('Gemini did not return a valid reply for post ID: ' . $post->id);
+            }
+        } else {
+            // 投稿文章が空の場合は、Geminiによる返信処理は行わず、ログに出力
+            Log::info('Post has no body text, skipping Gemini reply for post ID: ' . $post->id);
+        }
+        // --- ★ Geminiによる自動返信の処理はここまで ---
 
         // Userに関する処理を追加
         $user = Auth::user(); // 現在のユーザーを取得
