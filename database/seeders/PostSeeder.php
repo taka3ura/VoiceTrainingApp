@@ -18,7 +18,7 @@ class PostSeeder extends Seeder
             [
                 'body' => 'これは最初の投稿です。',
                 'audio_url' => null,
-                'user_id' => 2, // 1 -> 2 に変更
+                'user_id' => 2,
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
                 'deleted_at' => null,
@@ -26,7 +26,7 @@ class PostSeeder extends Seeder
             [
                 'body' => 'これは二番目の投稿です。',
                 'audio_url' => null,
-                'user_id' => 3, // 2 -> 3 に変更
+                'user_id' => 3,
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
                 'deleted_at' => null,
@@ -34,7 +34,7 @@ class PostSeeder extends Seeder
             [
                 'body' => 'これは三番目の投稿です。',
                 'audio_url' => null,
-                'user_id' => 2, // 1 -> 2 に変更
+                'user_id' => 2,
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
                 'deleted_at' => null,
@@ -42,7 +42,7 @@ class PostSeeder extends Seeder
             [
                 'body' => 'これは四番目の投稿です。',
                 'audio_url' => null,
-                'user_id' => 3, // 2 -> 3 に変更
+                'user_id' => 3,
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
                 'deleted_at' => null,
@@ -50,7 +50,7 @@ class PostSeeder extends Seeder
             [
                 'body' => 'これは五番目の投稿です。',
                 'audio_url' => null,
-                'user_id' => 2, // 1 -> 2 に変更
+                'user_id' => 2,
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
                 'deleted_at' => null,
@@ -58,7 +58,7 @@ class PostSeeder extends Seeder
             [
                 'body' => 'これは六番目の投稿です。',
                 'audio_url' => null,
-                'user_id' => 3, // 2 -> 3 に変更
+                'user_id' => 3,
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
                 'deleted_at' => null,
@@ -66,7 +66,7 @@ class PostSeeder extends Seeder
             [
                 'body' => 'これは七番目の投稿です。',
                 'audio_url' => null,
-                'user_id' => 2, // 1 -> 2 に変更
+                'user_id' => 2,
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
                 'deleted_at' => null,
@@ -74,7 +74,7 @@ class PostSeeder extends Seeder
             [
                 'body' => 'これは八番目の投稿です。',
                 'audio_url' => null,
-                'user_id' => 3, // 2 -> 3 に変更
+                'user_id' => 3,
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
                 'deleted_at' => null,
@@ -82,7 +82,7 @@ class PostSeeder extends Seeder
             [
                 'body' => 'これは九番目の投稿です。',
                 'audio_url' => null,
-                'user_id' => 2, // 1 -> 2 に変更
+                'user_id' => 2,
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
                 'deleted_at' => null,
@@ -90,7 +90,7 @@ class PostSeeder extends Seeder
             [
                 'body' => 'これは十番目の投稿です。',
                 'audio_url' => null,
-                'user_id' => 3, // 2 -> 3 に変更
+                'user_id' => 3,
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
                 'deleted_at' => null,
@@ -98,7 +98,7 @@ class PostSeeder extends Seeder
             [
                 'body' => 'これは十一番目の投稿です。',
                 'audio_url' => null,
-                'user_id' => 2, // 1 -> 2 に変更
+                'user_id' => 2,
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
                 'deleted_at' => null,
