@@ -5,7 +5,7 @@
             <div class="circle_show"><img src="{{ $user->image ?? asset('default-image.jpg') }}" alt="{{ $user->name }}のプロフィール画像"></div>
             <h2 class='user_name_show'>{{ $user->name }}</h2>
         </div>
-        <p class="mt-2 text-gray-700">{{ $user->profile_description ?? 'プロフィール文はまだありません。' }}</p>
+        <p>{!! nl2br(e($user->profile_description ?? 'プロフィール文はまだありません。')) !!}</p>
         <p>練習{{ $user->practice_days }}日目</p>
         <p>最後に練習したのは{{ $user->last_practice_date }}</p>
         <p>現在のレベルは{{ $user->level }}</p>
@@ -31,7 +31,4 @@
     <div class='paginate'>
         {{ $posts->links() }}
     </div>
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-
 </x-app-layout>
