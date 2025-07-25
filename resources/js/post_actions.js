@@ -25,91 +25,79 @@ document.addEventListener("DOMContentLoaded", () => {
     // ------------------------------------
     // いいね処理のイベントリスナー（イベントデリゲーション）
     // ------------------------------------
-    const postsContainer = document.querySelector(".posts");
+    document.body.addEventListener("click", async (e) => {
+        const iconElement = e.target.closest(".like-btn");
 
-    if (postsContainer) {
-        postsContainer.addEventListener("click", async (e) => {
-            const iconElement = e.target.closest(".like-btn");
+        // いいねボタンでなければ処理しない
+        if (!iconElement || iconElement.tagName !== "ION-ICON") {
+            return;
+        }
 
-            // いいねボタンでなければ処理しない
-            if (!iconElement || iconElement.tagName !== "ION-ICON") {
-                return;
-            }
+        // クリックイベントの伝播を停止
+        // これにより、このクリックが親要素（例: 投稿全体のクリックリスナー）に伝わらないようにする
+        e.stopPropagation();
 
-            // クリックイベントの伝播を停止
-            // これにより、このクリックが親要素（例: 投稿全体のクリックリスナー）に伝わらないようにする
-            e.stopPropagation();
+        const postId = iconElement.dataset.postId;
+        const url = iconElement.dataset.likeUrl;
 
-            const postId = iconElement.dataset.postId;
-            const url = iconElement.dataset.likeUrl;
+        if (!postId || !url) {
+            console.error("投稿IDまたはURLが取得できませんでした。", {
+                postId,
+                url,
+                iconElement,
+            });
+            alert("いいね処理に必要な情報が不足しています。");
+            return;
+        }
 
-            if (!postId || !url) {
-                console.error("投稿IDまたはURLが取得できませんでした。", {
-                    postId,
-                    url,
-                    iconElement,
-                });
-                alert("いいね処理に必要な情報が不足しています。");
-                return;
-            }
+        try {
+            // CSRFトークンはBlade側で設定されたmetaタグから取得
+            const csrfToken = document
+                .querySelector('meta[name="csrf-token"]')
+                .getAttribute("content");
 
-            try {
-                // CSRFトークンはBlade側で設定されたmetaタグから取得
-                const csrfToken = document
-                    .querySelector('meta[name="csrf-token"]')
-                    .getAttribute("content");
+            const response = await fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": csrfToken,
+                },
+            });
 
-                const response = await fetch(url, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "X-CSRF-TOKEN": csrfToken,
-                    },
-                });
-
-                if (!response.ok) {
-                    const errorData = await response.json();
-                    throw new Error(
-                        errorData.message ||
-                            `サーバーエラー: ${response.status}`
-                    );
-                }
-
-                const data = await response.json();
-
-                const likesCountElement = document.getElementById(
-                    `likes-count-${postId}`
-                );
-                if (likesCountElement) {
-                    likesCountElement.textContent = data.likes_count;
-                } else {
-                    console.warn(
-                        `likes-count-${postId} の要素が見つかりませんでした。`
-                    );
-                }
-
-                if (data.is_liked_by_user) {
-                    iconElement.classList.add("text-pink-500");
-                    iconElement.setAttribute("name", "heart");
-                } else {
-                    iconElement.classList.remove("text-pink-500");
-                    iconElement.setAttribute("name", "heart-outline");
-                }
-            } catch (error) {
-                console.error("いいね処理が失敗しました:", error);
-                alert(
-                    `いいね処理が失敗しました: ${
-                        error.message || "不明なエラー"
-                    }`
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(
+                    errorData.message || `サーバーエラー: ${response.status}`
                 );
             }
-        });
-    } else {
-        console.error(
-            "'.posts' コンテナ要素が見つかりませんでした。いいねイベントリスナーを設定できません。"
-        );
-    }
 
+            const data = await response.json();
+
+            const likesCountElement = document.getElementById(
+                `likes-count-${postId}`
+            );
+            if (likesCountElement) {
+                likesCountElement.textContent = data.likes_count;
+            } else {
+                console.warn(
+                    `likes-count-${postId} の要素が見つかりませんでした。`
+                );
+            }
+
+            if (data.is_liked_by_user) {
+                iconElement.classList.add("text-pink-500");
+                iconElement.setAttribute("name", "heart");
+            } else {
+                iconElement.classList.remove("text-pink-500");
+                iconElement.setAttribute("name", "heart-outline");
+            }
+        } catch (error) {
+            console.error("いいね処理が失敗しました:", error);
+            alert(
+                `いいね処理が失敗しました: ${error.message || "不明なエラー"}`
+            );
+        }
+    });
     // ------------------------------------
     // 投稿全体クリックでの詳細ページ遷移
     // ------------------------------------

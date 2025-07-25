@@ -18,7 +18,7 @@ class UserController extends Controller
     {
         // N+1問題を避けつつ、ユーザーの投稿をページネーションして取得します。
         // 'posts' はUserモデルに定義されたリレーション名と仮定します。
-        $posts = $user->posts()->latest()->paginate(10);
+        $posts = $user->posts()->withCount('replies')->latest()->paginate(20);
 
         return view('users.show', [
             'user' => $user,
