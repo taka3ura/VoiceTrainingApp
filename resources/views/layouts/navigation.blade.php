@@ -18,7 +18,7 @@
         </div>
         {{-- ユーザーアイコン --}}
         <div class="flex items-center space-x-2 mb-6">
-            <div class="circle"><img src="{{ Auth::user()->image ?? asset('default-image.jpg') }}" alt="プロフィール画像"></div>
+            <div class="circle"><img src="{{ Auth::user()->image ?? asset('default-image.png') }}" alt="プロフィール画像"></div>
         </div>
 
     </div>
@@ -37,7 +37,7 @@
     <div class="px-4 py-2 flex justify-between items-center">
         {{-- ロゴ・アプリ名 --}}
         <div class="flex items-center space-x-2 min-w-0 overflow-hidden">
-            <img src="{{ Auth::user()->image ?? asset('default-image.jpg') }}" alt="プロフィール画像" class="h-8 w-8 rounded-full">
+            <img src="{{ Auth::user()->image ?? asset('default-image.png') }}" alt="プロフィール画像" class="h-8 w-8 rounded-full">
         </div>
         {{-- ハンバーガーメニュー --}}
         <button @click="open = ! open" class="ms-auto p-2 rounded-md text-gray-400 hover:text-gray-600 focus:outline-none">

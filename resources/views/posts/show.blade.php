@@ -5,7 +5,7 @@
     @auth {{-- ログインしているユーザーのみフォームを表示 --}}
     <div class="reply-form reply">
         <div class="user_information">
-            <div class="circle"><img src="{{ Auth::user()->image ?? asset('default-image.jpg') }}" alt="プロフィール画像"></div>
+            <div class="circle"><img src="{{ Auth::user()->image ?? asset('default-image.png') }}" alt="プロフィール画像"></div>
             <p class="user_name">{{ Auth::user()->name }}</p>
         </div>
         <form action="{{ route('posts.replies.store', $post) }}" method="POST">
