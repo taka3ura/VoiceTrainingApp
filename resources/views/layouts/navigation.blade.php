@@ -1,29 +1,33 @@
 <div class="hidden md:flex flex-col justify-between custom-width bg-white border-r border-gray-200 p-3 sticky top-0 h-screen">
-    {{-- ▼変更点: 上部にロゴとリンク --}}
-    <div>
-        {{-- 変更点:ナビゲーションリンク（縦並び --}}
-        <div class="flex flex-col space-y-3">
-            <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                ダッシュボード
-            </x-nav-link>
-            <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
-                プロフィール
-            </x-nav-link>
-            <x-nav-link href="/" :active="request()->is('/')">
-                投稿一覧
-            </x-nav-link>
-            <x-nav-link href="/posts/create" :active="request()->is('posts/create')">
-                新規投稿
-            </x-nav-link>
-        </div>
-        {{-- ユーザーアイコン --}}
-        <div class="flex items-center space-x-2 mb-6">
-            <div class="circle"><img src="{{ Auth::user()->image ?? asset('default-image.png') }}" alt="プロフィール画像"></div>
-        </div>
 
+    {{-- 上部のグループ：ナビゲーションリンク群 --}}
+    <div class="flex flex-col space-y-20"> {{-- 各ナビリンク間のスペースを確保 --}}
+        <div class="app-branding mb-4 p-2">
+            <h2 class="text-2xl text-center">うたプラ</h2>
+        </div>
+        <x-nav-link href="/" :active="request()->is('/')" class="flex items-center space-x-2">
+            <ion-icon name="home-outline" size="large"></ion-icon>
+            <span>投稿一覧</span>
+        </x-nav-link>
+        <x-nav-link href="/posts/create" :active="request()->is('posts/create')" class="flex items-center space-x-2">
+            <ion-icon name="create-outline" size="large"></ion-icon>
+            <span>投稿する</span>
+        </x-nav-link>
+        <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')" class="flex items-center space-x-2">
+            <ion-icon name="person-outline" size="large"></ion-icon>
+            <span>プロフィール編集</span>
+        </x-nav-link>
     </div>
-    {{-- 変更点: 下部にログアウトボタン --}}
-    <div>
+
+    {{-- 下部のグループ：ユーザーアイコンとログアウトボタン --}}
+    {{-- これらが画面の一番下に固定されるように配置される --}}
+    <div class="flex flex-col space-y-3"> {{-- ユーザーアイコンとログアウトボタン間のスペースを確保 --}}
+        {{-- ユーザーアイコン --}}
+        <a href="{{ route('users.show', Auth::user()->id) }}" class="flex items-center space-x-2 text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded p-2">
+            <div class="circle">
+                <img src="{{ Auth::user()->image ?? asset('default-image.png') }}" alt="プロフィール画像">
+            </div>
+        </a>
         <form method="POST" action="{{ route('logout') }}">
             @csrf
             <button type="submit" class="text-left w-full px-4 py-2 text-red-500 hover:bg-red-100 rounded">
@@ -31,6 +35,7 @@
             </button>
         </form>
     </div>
+
 </div>
 {{-- ▼変更点: モバイル表示用のナビゲーション --}}
 <nav x-data="{ open: false }" class="md:hidden bg-white border-b border-gray-100 custom-width">
