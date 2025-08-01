@@ -2,7 +2,7 @@
     <!-- ユーザー情報 -->
     <div class="profile">
         <div class="user_information">
-            <div class="circle_show"><img src="{{ $user->image ?? asset('default-image.jpg') }}" alt="{{ $user->name }}のプロフィール画像"></div>
+            <div class="circle_show"><img src="{{ $user->image ?? asset('default-image.png') }}" alt="{{ $user->name }}のプロフィール画像"></div>
             <h2 class='user_name_show'>{{ $user->name }}</h2>
         </div>
         <p>{!! nl2br(e($user->profile_description ?? 'プロフィール文はまだありません。')) !!}</p>

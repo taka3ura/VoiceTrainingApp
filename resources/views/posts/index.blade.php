@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="new_post">
         <div class="user_information">
-            <div class="circle"><img src="{{ Auth::user()->image ?? asset('default-image.jpg') }}" alt="プロフィール画像"></div>
+            <div class="circle"><img src="{{ Auth::user()->image ?? asset('default-image.png') }}" alt="プロフィール画像"></div>
             <p class="user_name">{{ Auth::user()->name }}</p>
         </div>
         <form action="/posts" method="POST" enctype="multipart/form-data">
