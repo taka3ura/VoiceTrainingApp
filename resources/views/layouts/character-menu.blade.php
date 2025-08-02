@@ -1,4 +1,4 @@
-<div class="character-width bg-white border-l border-gray-200 p-4 sticky top-0 h-screen">
+<div class="character-width bg-white border-l border-gray-200 p-4 sticky top-0 min-h-screen pb-2.5">
     <div class="practice-menu-container">
         <h2 class="text-lg font-bold text-black">練習メニュー</h2>
         @if (Auth::user()->practice_menu)
