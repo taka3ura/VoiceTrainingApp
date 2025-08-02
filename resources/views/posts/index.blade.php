@@ -11,8 +11,7 @@
             </div>
             <p class="body__error" style="color:red">{{ $errors->first('post.body') }}</p>
             <div class="audio">
-                <input type="file" id="audio" name="audio" accept="audio/*" style="display: none;">
-                <label for="audio" class="custom-file-upload">
+                <input type="file" id="audio" name="audio" accept="audio/mp4,audio/m4a,audio/wav,audio/mp3" style="display: none;"> <label for="audio" class="custom-file-upload">
                     <img src="https://res.cloudinary.com/dee34nq47/image/upload/v1751204819/%E9%9F%B3%E6%A5%BD%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3_4_ylfln6.png" alt="Upload Audio" />
                     <p id="file-name">音声ファイル</p>
                 </label>
