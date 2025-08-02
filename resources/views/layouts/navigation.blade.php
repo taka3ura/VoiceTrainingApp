@@ -1,7 +1,7 @@
 <div class="hidden md:flex flex-col justify-between custom-width bg-white border-r border-gray-200 p-3 sticky top-0 h-screen">
 
     {{-- 上部のグループ：ナビゲーションリンク群 --}}
-    <div class="flex flex-col space-y-20"> {{-- 各ナビリンク間のスペースを確保 --}}
+    <div class="flex flex-col space-y-16"> {{-- 各ナビリンク間のスペースを確保 --}}
         <div class="app-branding mb-4 p-2">
             <h2 class="text-2xl text-center">うたプラ</h2>
         </div>
