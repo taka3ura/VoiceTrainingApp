@@ -24,7 +24,7 @@ class PostRequest extends FormRequest
     {
         return [
             'post.body' => 'required|string|max:250',
-            'audio' => 'required|file|mimes:mp3,m4a,mp4,wav|max:64000',
+            'audio' => 'nullable|file|mimes:mp3,m4a,wav|max:64000',
         ];
     }
 }
