@@ -34,7 +34,7 @@
             {{-- 返信者のアイコンと名前にリンク --}}
             <div class="user_information">
                 <a href="{{ route('users.show', ['user' => $reply->user->id]) }}" class="flex items-center no-navigate-post">
-                    <div class="circle"><img src="{{ $reply->user->image ?? asset('default-image.jpg') }}" alt="プロフィール画像"></div>
+                    <div class="circle"><img src="{{ $reply->user->image ?? asset('default-image.png') }}" alt="プロフィール画像"></div>
                     <h2 class='user_name'>{{ $reply->user->name }}</h2>
                 </a>
                 <p class="reply-date ml-2 text-sm text-gray-500">{{ $reply->created_at->format('Y/m/d H:i') }}</p>

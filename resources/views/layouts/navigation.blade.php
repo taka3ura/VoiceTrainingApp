@@ -64,7 +64,7 @@
         <x-responsive-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
             プロフィール
         </x-responsive-nav-link>
-        <x-responsive-nav-link href="/posts" :active="request()->is('posts')">
+        <x-responsive-nav-link href="/" :active="request()->is('/')">
             投稿一覧
         </x-responsive-nav-link>
         <x-responsive-nav-link href="/posts/create" :active="request()->is('posts/create')">
