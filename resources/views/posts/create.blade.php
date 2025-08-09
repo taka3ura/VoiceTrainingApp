@@ -17,7 +17,9 @@
                     <p id="file-name">音声ファイル</p>
                 </label>
             </div>
-            <input type="submit" value="投稿" />
+            <button type="submit" class="mt-2 px-2 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                投稿
+            </button>
         </form>
     </div>
     <div class="footer">
