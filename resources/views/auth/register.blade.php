@@ -8,11 +8,6 @@
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
-        <div>
-            <x-input-label for="image" value="プロフィール画像" />
-            <x-user-image /><x-input-error class="mt-2" :messages="$errors->get('image')" />
-        </div>
-
         <div class="mt-4">
             <x-input-label for="email" value="メールアドレス" />
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
