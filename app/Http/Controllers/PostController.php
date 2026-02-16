@@ -42,7 +42,7 @@ class PostController extends Controller
     {
         $input = $request['post'];
         if ($request->file("audio")) {
-            //cloudinaryへ音声を送信し、画像のURLを$audio_urlに代入している
+            //cloudinaryへ音声を送信し、音声のURLを$audio_urlに代入している
             $audio_url = Cloudinary::upload($request->file('audio')->getRealPath(), ['resource_type' => 'video'])->getSecurePath();
             //dd($audio_url);  //音声のURLを画面に表示
             $input += ['audio_url' => $audio_url];
